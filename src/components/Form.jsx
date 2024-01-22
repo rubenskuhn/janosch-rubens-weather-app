@@ -1,11 +1,16 @@
-export default function Form() {
+export default function Form({ onAddActivity }) {
   return (
     <form>
       <h1>Add New Activity</h1>
-      <label>
-        Name:
+      <div>
+        <label labelFor="name">Name</label>
         <input type="text" name="name" />
-      </label>
+      </div>
+      <div>
+        <label labelFor="good-weather">Good-weather activity:</label>
+        <input type="checkbox" name="good-weather" />
+      </div>
+      <button type="submit">Submit</button>
     </form>
   );
 }
