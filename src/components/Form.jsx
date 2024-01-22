@@ -1,9 +1,14 @@
 export default function Form() {
   function handleSubmit(e) {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData);
-    console.log(data);
+    const nameInput = document.getElementById("name").value;
+    const isGoodWeatherInput = document.getElementById("good-weather").checked;
+    const formInput = {
+      name: nameInput,
+      isGoodWeather: isGoodWeatherInput,
+    };
+
+    console.log("formInput: ", formInput);
   }
   return (
     <form onSubmit={handleSubmit}>
