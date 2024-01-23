@@ -1,14 +1,17 @@
-export default function Form() {
+export default function Form({ onAddActivity }) {
   function handleSubmit(e) {
     e.preventDefault();
     const nameInput = document.getElementById("name").value;
     const isGoodWeatherInput = document.getElementById("good-weather").checked;
-    const formInput = {
+    const newActivity = {
       name: nameInput,
-      isGoodWeather: isGoodWeatherInput,
+      isForGoodWeather: isGoodWeatherInput,
     };
+    console.log("newActivity: ", newActivity);
+    onAddActivity(newActivity);
 
-    console.log("formInput: ", formInput);
+    e.target.reset();
+    e.target.elements.name.focus();
   }
   return (
     <form onSubmit={handleSubmit}>
