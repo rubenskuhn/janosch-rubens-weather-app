@@ -5,9 +5,10 @@ import Form from "./components/Form.jsx";
 import ActivitiesList from "./components/ActivitiesList.jsx";
 import { uid } from "uid";
 import WeatherHeader from "./components/WeatherHeader.jsx";
+import useLocalStorageState from "use-local-storage-state";
 
 function App() {
-  const [activities, setActivities] = useState([]);
+  const [activities, setActivities] = useLocalStorageState([]);
   console.log("activities: ", activities);
 
   const [weather, setWeather] = useState("");
