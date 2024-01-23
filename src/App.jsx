@@ -4,14 +4,13 @@ import "./App.css";
 import Form from "./components/Form.jsx";
 import ActivitiesList from "./components/ActivitiesList.jsx";
 import { uid } from "uid";
+import WeatherHeader from "./components/WeatherHeader.jsx";
 
 function App() {
   const [activities, setActivities] = useState([]);
   console.log("activities: ", activities);
 
-  const [isGoodWeather, setIsGoodWeather] = useState(true);
-
-  // const isGoodWeather = true;
+  const [weather, setWeather] = useState("");
 
   useEffect(
     () =>
@@ -23,29 +22,32 @@ function App() {
 
           const weatherData = await response.json();
           console.log(weatherData);
-
-          setIsGoodWeather(weatherData.isGoodWeather);
+          setWeather(weatherData);
         } catch (error) {
           console.log(error);
         }
       },
     []
   );
-  console.log("isGoodWeather", isGoodWeather);
 
   const filteredActivities = activities.filter(
-    (activity) => activity.isForGoodWeather === isGoodWeather
+    (activity) => activity.isForGoodWeather === weather.isGoodWeather
   );
   console.log("filteredActivities: ", filteredActivities);
 
   function handleAddActivity(newActivity) {
     setActivities((prevstate) => [...prevstate, { ...newActivity, id: uid() }]);
   }
+
   return (
     <>
+      <WeatherHeader
+        weatherEmoji={weather.condition}
+        temperature={weather.temperature}
+      />
       <ActivitiesList
         activities={filteredActivities}
-        isGoodWeather={isGoodWeather}
+        isGoodWeather={weather.isGoodWeather}
       />
       <Form onAddActivity={handleAddActivity} />
     </>
