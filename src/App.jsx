@@ -12,23 +12,22 @@ function App() {
 
   const [weather, setWeather] = useState("");
 
-  useEffect(
-    () =>
-      async function getWeatherData() {
-        try {
-          const response = await fetch(
-            "https://example-apis.vercel.app/api/weather"
-          );
+  useEffect(() => {
+    async function getWeatherData() {
+      try {
+        const response = await fetch(
+          "https://example-apis.vercel.app/api/weather"
+        );
 
-          const weatherData = await response.json();
-          console.log(weatherData);
-          setWeather(weatherData);
-        } catch (error) {
-          console.log(error);
-        }
-      },
-    []
-  );
+        const weatherData = await response.json();
+        console.log(weatherData);
+        setWeather(weatherData);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getWeatherData();
+  }, []);
 
   const filteredActivities = activities.filter(
     (activity) => activity.isForGoodWeather === weather.isGoodWeather
