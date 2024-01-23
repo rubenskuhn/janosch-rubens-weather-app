@@ -29,7 +29,11 @@ function App() {
         console.log(error);
       }
     }
-    getWeatherData();
+    let interval = setInterval(getWeatherData, 5000);
+
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
   const filteredActivities = activities.filter(
