@@ -6,15 +6,23 @@ import { uid } from "uid";
 
 function App() {
   const [activities, setActivities] = useState([]);
-  // const newActivity = {}
   console.log("activities: ", activities);
+
+  const isGoodWeather = true;
+  const filteredActivities = activities.filter(
+    (activity) => activity.isForGoodWeather === isGoodWeather
+  );
+  console.log("filteredActivities: ", filteredActivities);
+
   function handleAddActivity(newActivity) {
-    const id = uid();
     setActivities((prevstate) => [...prevstate, { ...newActivity, id: uid() }]);
   }
   return (
     <>
-      <ActivitiesList activities={activities} />
+      <ActivitiesList
+        activities={filteredActivities}
+        isGoodWeather={isGoodWeather}
+      />
       <Form onAddActivity={handleAddActivity} />
     </>
   );
