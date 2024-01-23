@@ -8,7 +8,9 @@ import WeatherHeader from "./components/WeatherHeader.jsx";
 import useLocalStorageState from "use-local-storage-state";
 
 function App() {
-  const [activities, setActivities] = useLocalStorageState([]);
+  const [activities, setActivities] = useLocalStorageState("activities", {
+    defaultValue: [],
+  });
   console.log("activities: ", activities);
 
   const [weather, setWeather] = useState("");
