@@ -39,6 +39,11 @@ function App() {
     setActivities((prevstate) => [...prevstate, { ...newActivity, id: uid() }]);
   }
 
+  function handleDeleteActivity(id) {
+    const newList = activities.filter((activity) => activity.id !== id);
+    setActivities(newList);
+  }
+
   return (
     <>
       <WeatherHeader
@@ -48,6 +53,7 @@ function App() {
       <ActivitiesList
         activities={filteredActivities}
         isGoodWeather={weather.isGoodWeather}
+        onDeleteActivity={handleDeleteActivity}
       />
       <Form onAddActivity={handleAddActivity} />
     </>
