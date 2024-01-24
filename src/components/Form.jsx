@@ -15,10 +15,11 @@ export default function Form({ onAddActivity }) {
   }
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Add New Activity</h2>
+      <h3>Add New Activity</h3>
       <div>
         <label htmlFor="name">Name</label>
         <input type="text" name="name" id="name" />
+        <p></p>
       </div>
       <div>
         <label htmlFor="good-weather">Good-weather activity:</label>
