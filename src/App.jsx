@@ -14,6 +14,7 @@ function App() {
   console.log("activities: ", activities);
 
   const [weather, setWeather] = useState("");
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     async function getWeatherData() {
@@ -25,6 +26,7 @@ function App() {
         const weatherData = await response.json();
         console.log(weatherData);
         setWeather(weatherData);
+        setLoaded(true);
       } catch (error) {
         console.log(error);
       }
@@ -54,6 +56,7 @@ function App() {
   return (
     <>
       <WeatherHeader
+        loaded={loaded}
         weatherEmoji={weather.condition}
         temperature={weather.temperature}
       />
